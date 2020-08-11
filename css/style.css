@@ -1,0 +1,15 @@
+#todoList {
+	margin-bottom: 150px;
+}
+.right {
+	float: right;
+}
+li {
+    font-size: 20px;
+}
+.default {
+	background-color: #2bbbad !important;
+}
+#todoHeading{
+    display: none;
+}
