@@ -4,4 +4,4 @@ I made this Todo App Using Html, Css, Bootstrap, MDB Vanilla JAvascript and Fire
 
 live preview
 
-https://hamzayousuf121.github.io/Vanilla-Javascript-TodoApp/
+https://hamzayousuf121.github.io/Javascript-firebase-todoapp/
