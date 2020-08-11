@@ -4,8 +4,8 @@ var todo = document.getElementById('todo');
 var todoHeading = document.getElementById('todoHeading')
 var editField = document.getElementById('updateTodoValue');
 
-getfirebaseData = () => {
-    firebase.database().ref('todos').on('value', (snapshots) => {
+getfirebaseData = (val='value') => {
+    firebase.database().ref('todos').on(val, (snapshots) => {
         var object = snapshots.val();
         console.log(object.name)
         for (const key in object) {
@@ -18,6 +18,18 @@ getfirebaseData = () => {
             }
         }
     })
+            //     var commentsRef = firebase.database().ref('post-comments/' + postId);
+            // commentsRef.on('child_added', function(data) {
+            // addCommentElement(postElement, data.key, data.val().text, data.val().author);
+            // });
+            
+            // commentsRef.on('child_changed', function(data) {
+            // setCommentValues(postElement, data.key, data.val().text, data.val().author);
+            // });
+            
+            // commentsRef.on('child_removed', function(data) {
+            // deleteComment(postElement, data.key);
+            // });
 }
 
 getfirebaseData();
@@ -33,7 +45,7 @@ form.addEventListener('submit', (e) => {
         firebase.database().ref('todos/' + keys).set(todosItem)
         todo.value = '';
         todoHeading.style.display = 'block';
-
+        getfirebaseData('child_added');
     }
 })
 
@@ -45,6 +57,8 @@ deleteAllTodo = () => {
 }
 deleteTodo = (key) => {
     firebase.database().ref('todos/' + key).remove();
+    getfirebaseData('child_removed');
+
 }
 
 function editTodo(key) {
