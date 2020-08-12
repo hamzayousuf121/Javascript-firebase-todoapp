@@ -14,64 +14,48 @@
   <link rel="stylesheet" href="css/mdb.min.css">
 
   <link rel="stylesheet" href="css/style.css">
-  
-  <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-database.js"></script>
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyB6mjtQDlurX9hyuSDMqv6pjpi8NCGNiws",
-    authDomain: "fir-login-8fa07.firebaseapp.com",
-    databaseURL: "https://fir-login-8fa07.firebaseio.com",
-    projectId: "fir-login-8fa07",
-    storageBucket: "fir-login-8fa07.appspot.com",
-    messagingSenderId: "674592208334",
-    appId: "1:674592208334:web:18be11ed27c8ceeea6679f",
-    measurementId: "G-501TY03Z43"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
 
-</script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-database.js"></script>
 </head>
 
 <body>
+  <div>
+    <h1 class="text-center text-shadow default-color text-white">Todo App </h1>
+    <div class="container hoverable">
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-12 col-sm-12 hoverable">
+          <!-- Default form login -->
+          <form class="text-center p-5" id="todoform">
 
-  <h1 class="text-center text-shadow default-color text-white">Todo App </h1>
-  <div class="container hoverable">
-    <div class="row">
-      <div class="col-lg-6 col-md-12 col-12 col-sm-12 hoverable">
-        <!-- Default form login -->
-        <form class="text-center p-5" id="todoform">
+            <h1 class="h1 mb-4 deeppink ml2">JavaScript FireBase TodoApp </h1>
+            <input type="text" id="todo" class="form-control mb-4" placeholder="Enter Your Todo">
 
-          <p class="h1 mb-4 text-default">Javascript FireBase TodoApp </p>
-          <input type="text" id="todo" class="form-control mb-4" placeholder="Enter Your Todo">
+            <button class="btn default-color default text-white btn-block my-4" type="submit">Add Todo</button>
+            <button class="btn danger-color text-white btn-block my-4" onclick="deleteAllTodo()" type="submit">Delete
+              All
+              Todo</button>
+          </form>
+        </div>
+        <div class="col-lg-6 col-md-12 col-12 col-sm-12 hoverable">
+          <img src="./img/undraw_Checklist_7dx2.svg" alt="" class="img-fluid">
 
-          <button class="btn default-color default text-white btn-block my-4" type="submit">Add Todo</button>
-          <button class="btn danger-color text-white btn-block my-4" onclick="deleteAllTodo()" type="submit">Delete All
-            Todo</button>
-        </form>
+        </div>
       </div>
-      <div class="col-lg-6 col-md-12 col-12 col-sm-12 hoverable">
-        <img src="./img/undraw_Checklist_7dx2.svg" alt="" class="img-fluid">
 
+    </div>
+    <br><br>
+    <h1 class="text-center text-shadow default-color text-white" id="todoHeading">Todo Items </h1>
+    <div class="container">
+      <div class="row">
+        <div class="offset-lg-2 col-lg-8 col-md-12 col-12 col-sm-12">
+          <ul class="list-group hoverable" id="todoList">
+
+          </ul>
+        </div>
       </div>
     </div>
-
   </div>
-  </div>
-  <br><br>
-  <h1 class="text-center text-shadow default-color text-white" id="todoHeading">Todo Items </h1>
-  <div class="container">
-    <div class="row">
-      <div class="offset-lg-2 col-lg-8 col-md-12 col-12 col-sm-12">
-        <ul class="list-group hoverable" id="todoList">
-
-        </ul>
-      </div>
-    </div>
-  </div>
-
   <!-- Central Modal Medium Success -->
   <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
@@ -108,6 +92,8 @@
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+  <script src="js/animate.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
 
 </body>

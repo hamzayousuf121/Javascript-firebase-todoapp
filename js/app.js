@@ -1,15 +1,29 @@
+var firebaseConfig = {
+    apiKey: "AIzaSyB6mjtQDlurX9hyuSDMqv6pjpi8NCGNiws",
+    authDomain: "fir-login-8fa07.firebaseapp.com",
+    databaseURL: "https://fir-login-8fa07.firebaseio.com",
+    projectId: "fir-login-8fa07",
+    storageBucket: "fir-login-8fa07.appspot.com",
+    messagingSenderId: "674592208334",
+    appId: "1:674592208334:web:18be11ed27c8ceeea6679f",
+    measurementId: "G-501TY03Z43"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  
 var form = document.getElementById('todoform');
 var todoItems = document.getElementById('todoList');
 var todo = document.getElementById('todo');
 var todoHeading = document.getElementById('todoHeading')
 var editField = document.getElementById('updateTodoValue');
 
-getfirebaseData = (val='value') => {
-    firebase.database().ref('todos').on(val, (snapshots) => {
+getfirebaseData = () => {
+    firebase.database().ref('todos').on('value', (snapshots) => {
         var object = snapshots.val();
-        console.log(object.name)
+        todoItems.innerHTML = '';
         for (const key in object) {
-            if (object.hasOwnProperty(key)) {
+            if (object.hasOwnProperty(key) && object[key].name != null) {
                 const element = object[key];
                 var listItem = `<li class="list-group-item" id=${element.key}> ${element.name}<button class="btn btn-danger right" onclick="deleteTodo('${element.key}')">Delete</button>
                 <button class="btn btn-default default right"
@@ -18,18 +32,7 @@ getfirebaseData = (val='value') => {
             }
         }
     })
-            //     var commentsRef = firebase.database().ref('post-comments/' + postId);
-            // commentsRef.on('child_added', function(data) {
-            // addCommentElement(postElement, data.key, data.val().text, data.val().author);
-            // });
-            
-            // commentsRef.on('child_changed', function(data) {
-            // setCommentValues(postElement, data.key, data.val().text, data.val().author);
-            // });
-            
-            // commentsRef.on('child_removed', function(data) {
-            // deleteComment(postElement, data.key);
-            // });
+
 }
 
 getfirebaseData();
@@ -64,17 +67,17 @@ deleteTodo = (key) => {
 function editTodo(key) {
     var object;
     firebase.database().ref('todos/' + key).once('value', (snapshots) => {
-           object = snapshots.val();
-           editField.value = object.name;     
-           sessionStorage.setItem('id', object.key);
+        object = snapshots.val();
+        editField.value = object.name;
+        sessionStorage.setItem('id', object.key);
     })
 }
 
 function updatetodo(key) {
-    var key =  sessionStorage.getItem('id')
+    var key = sessionStorage.getItem('id')
     firebase.database().ref('todos/' + key).set({
-        name : editField.value,
-        key : key
+        name: editField.value,
+        key: key
     })
     sessionStorage.removeItem('id')
 }
